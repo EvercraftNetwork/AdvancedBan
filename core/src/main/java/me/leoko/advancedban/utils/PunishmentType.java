@@ -29,28 +29,28 @@ public enum PunishmentType {
 
     public static PunishmentType fromCommandName(String cmd) {
         switch (cmd) {
-            case "ban":
+            case "localban":
                 return BAN;
-            case "tempban":
+            case "localtempban":
                 return TEMP_BAN;
-            case "ban-ip":
-            case "banip":
-            case "ipban":
+            case "localban-ip":
+            case "localbanip":
+            case "localipban":
                 return IP_BAN;
-            case "tempipban":
-            case "tipban":
+            case "localtempipban":
+            case "localtipban":
                 return TEMP_IP_BAN;
-            case "mute":
+            case "localmute":
                 return MUTE;
-            case "tempmute":
+            case "localtempmute":
                 return TEMP_MUTE;
-            case "warn":
+            case "localwarn":
                 return WARNING;
-            case "note":
+            case "localnote":
                 return NOTE;
-            case "tempwarn":
+            case "localtempwarn":
                 return TEMP_WARNING;
-            case "kick":
+            case "localkick":
                 return KICK;
             default:
                 return null;

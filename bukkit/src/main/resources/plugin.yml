@@ -8,49 +8,49 @@ api-version: 1.13
 commands:
   AdvancedBan:
     description: Information about the Plugin
-  ban:
+  localban:
     description: Ban a user permanently
-  tempban:
+  localtempban:
     description: Ban a user temporarily
-  ipban:
+  localipban:
     description: Ban a user by IP
-    aliases: [banip, ban-ip]
-  tempipban:
+    aliases: [localbanip, localban-ip]
+  localtempipban:
     description: Ban a user temporarily by IP
-    aliases: [tipban]
-  kick:
+    aliases: [localtipban]
+  localkick:
     description: Kick a user
-  warn:
+  localwarn:
     description: Warn a user permanently
-  note:
+  localnote:
     description: Adds a note to a users file
-  tempwarn:
+  localtempwarn:
     description: Warn a user temporarily
-  mute:
+  localmute:
     description: Mute a user permanently
-  tempmute:
+  localtempmute:
     description: Mute a user temporarily
-  banlist:
+  localbanlist:
     description: See all punishments
-  history:
+  localhistory:
     description: See a user''s history
-  warns:
+  localwarns:
     description: See your or a user''s warns
-  notes:
+  localnotes:
     description: See your or a user''s notes
-  check:
+  localcheck:
     description: Get all information about a user
-  systemPrefs:
+  localsystemPrefs:
     description: Displays System-Preferences for setting up the plugin
-  unwarn:
+  localunwarn:
     description: Deletes a warn
-  unnote:
+  localunnote:
     description: Deletes a note
-  unpunish:
+  localunpunish:
     description: Deletes a punishment by ID
-  unban:
+  localunban:
     description: Unban a user
-  unmute:
+  localunmute:
     description: Unmute a user
-  change-reason:
+  localchangereason:
     description: Change the reason of an existing punishment

@@ -32,7 +32,7 @@ public enum Command {
             new PunishmentTabCompleter(false),
             new PunishmentProcessor(PunishmentType.BAN),
             PunishmentType.BAN.getConfSection("Usage"),
-            "ban"),
+            "localban"),
 
     TEMP_BAN(
             PunishmentType.TEMP_BAN.getPerms(),
@@ -40,7 +40,7 @@ public enum Command {
             new PunishmentTabCompleter(true),
             new PunishmentProcessor(PunishmentType.TEMP_BAN),
             PunishmentType.TEMP_BAN.getConfSection("Usage"),
-            "tempban"),
+            "localtempban"),
 
     IP_BAN(
             PunishmentType.IP_BAN.getPerms(),
@@ -48,7 +48,7 @@ public enum Command {
             new PunishmentTabCompleter(false),
             new PunishmentProcessor(PunishmentType.IP_BAN),
             PunishmentType.IP_BAN.getConfSection("Usage"),
-            "ipban", "banip", "ban-ip"),
+            "localipban", "localbanip"),
 
     TEMP_IP_BAN(
             PunishmentType.TEMP_IP_BAN.getPerms(),
@@ -56,7 +56,7 @@ public enum Command {
             new PunishmentTabCompleter(true),
             new PunishmentProcessor(PunishmentType.TEMP_IP_BAN),
             PunishmentType.TEMP_IP_BAN.getConfSection("Usage"),
-            "tempipban"),
+            "localtempipban"),
 
     MUTE(
             PunishmentType.MUTE.getPerms(),
@@ -64,7 +64,7 @@ public enum Command {
             new PunishmentTabCompleter(false),
             new PunishmentProcessor(PunishmentType.MUTE),
             PunishmentType.MUTE.getConfSection("Usage"),
-            "mute"),
+            "localmute"),
 
     TEMP_MUTE(
             PunishmentType.TEMP_MUTE.getPerms(),
@@ -72,7 +72,7 @@ public enum Command {
             new PunishmentTabCompleter(true),
             new PunishmentProcessor(PunishmentType.TEMP_MUTE),
             PunishmentType.TEMP_MUTE.getConfSection("Usage"),
-            "tempmute"),
+            "localtempmute"),
 
     WARN(
             PunishmentType.WARNING.getPerms(),
@@ -80,7 +80,7 @@ public enum Command {
             new PunishmentTabCompleter(false),
             new PunishmentProcessor(PunishmentType.WARNING),
             PunishmentType.WARNING.getConfSection("Usage"),
-            "warn"),
+            "localwarn"),
 
     TEMP_WARN(
             PunishmentType.TEMP_WARNING.getPerms(),
@@ -88,7 +88,7 @@ public enum Command {
             new PunishmentTabCompleter(true),
             new PunishmentProcessor(PunishmentType.TEMP_WARNING),
             PunishmentType.TEMP_WARNING.getConfSection("Usage"),
-            "tempwarn"),
+            "localtempwarn"),
 
     NOTE(
             PunishmentType.NOTE.getPerms(),
@@ -96,7 +96,7 @@ public enum Command {
             new PunishmentTabCompleter(false),
             new PunishmentProcessor(PunishmentType.NOTE),
             PunishmentType.NOTE.getConfSection("Usage"),
-            "note"),
+            "localnote"),
 
     KICK(
             PunishmentType.KICK.getPerms(),
@@ -112,21 +112,21 @@ public enum Command {
                 new PunishmentProcessor(PunishmentType.KICK).accept(input);
             },
             PunishmentType.KICK.getConfSection("Usage"),
-            "kick"),
+            "localkick"),
 
     UN_BAN("ab." + PunishmentType.BAN.getName() + ".undo",
             "\\S+",
             new BasicTabCompleter("[Name/IP]"),
             new RevokeProcessor(PunishmentType.BAN),
             "Un" + PunishmentType.BAN.getConfSection("Usage"),
-            "unban"),
+            "localunban"),
 
     UN_MUTE("ab." + PunishmentType.MUTE.getName() + ".undo",
             "\\S+",
             new BasicTabCompleter(CleanTabCompleter.PLAYER_PLACEHOLDER, "[Name]"),
             new RevokeProcessor(PunishmentType.MUTE),
             "Un" + PunishmentType.MUTE.getConfSection("Usage"),
-            "unmute"),
+            "localunmute"),
 
     UN_WARN("ab." + PunishmentType.WARNING.getName() + ".undo",
             "[0-9]+|(?i:clear \\S+)",
@@ -166,7 +166,7 @@ public enum Command {
                 }
             },
             "Un" + PunishmentType.WARNING.getConfSection("Usage"),
-            "unwarn"),
+            "localunwarn"),
     UN_NOTE("ab." + PunishmentType.NOTE.getName() + ".undo",
             "[0-9]+|(?i:clear \\S+)",
             new CleanTabCompleter((user, args) -> {
@@ -205,14 +205,14 @@ public enum Command {
                 }
             },
             "Un" + PunishmentType.NOTE.getConfSection("Usage"),
-            "unnote"),
+            "localunnote"),
 
     UN_PUNISH("ab.all.undo",
             "[0-9]+",
             new BasicTabCompleter("<ID>"),
             new RevokeByIdProcessor("UnPunish", PunishmentManager.get()::getPunishment),
             "UnPunish.Usage",
-            "unpunish"),
+            "localunpunish"),
 
     CHANGE_REASON("ab.changeReason",
             "([0-9]+|(?i)(ban|mute) \\S+) .+",
@@ -267,7 +267,7 @@ public enum Command {
                 }
             },
             "ChangeReason.Usage",
-            "change-reason"),
+            "localchangereason"),
 
     BAN_LIST("ab.banlist",
             "([1-9][0-9]*)?",
@@ -276,7 +276,7 @@ public enum Command {
                     target -> PunishmentManager.get().getPunishments(SQLQuery.SELECT_ALL_PUNISHMENTS_LIMIT, 150),
                     "Banlist", false, false),
             "Banlist.Usage",
-            "banlist"),
+            "localbanlist"),
 
     HISTORY("ab.history",
             "\\S+( [1-9][0-9]*)?",
@@ -292,7 +292,7 @@ public enum Command {
                     target -> PunishmentManager.get().getPunishments(target, null, false),
                     "History", true, true),
             "History.Usage",
-            "history"),
+            "localhistory"),
 
     WARNS(null,
             "\\S+( [1-9][0-9]*)?|\\S+|",
@@ -331,7 +331,7 @@ public enum Command {
                 }
             },
             "Warns.Usage",
-            "warns"),
+            "localwarns"),
     NOTES(null,
             "\\S+( [1-9][0-9]*)?|\\S+|",
             new CleanTabCompleter((user, args) -> {
@@ -369,7 +369,7 @@ public enum Command {
                 }
             },
             "Notes.Usage",
-            "notes"),
+            "localnotes"),
 
     CHECK("ab.check",
             "\\S+",
@@ -413,7 +413,7 @@ public enum Command {
                 MessageManager.sendMessage(sender, "Check.Note", false, "COUNT", PunishmentManager.get().getCurrentNotes(uuid) + "");
             },
             "Check.Usage",
-            "check"),
+            "localcheck"),
 
     SYSTEM_PREFERENCES("ab.systemprefs",
             ".*",
@@ -432,7 +432,7 @@ public enum Command {
                 }
             },
             null,
-            "systemprefs"),
+            "localsystemprefs"),
 
     ADVANCED_BAN(null,
             ".*",
@@ -454,47 +454,47 @@ public enum Command {
                             mi.sendMessage(sender, "§8");
                             mi.sendMessage(sender, "§c§lAdvancedBan §7Command-Help");
                             mi.sendMessage(sender, "§8");
-                            mi.sendMessage(sender, "§c/ban [Name] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/localban [Name] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Ban a user permanently");
-                            mi.sendMessage(sender, "§c/banip [Name/IP] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/localbanip [Name/IP] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Ban a user by IP");
-                            mi.sendMessage(sender, "§c/tempban [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/localtempban [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Ban a user temporary");
-                            mi.sendMessage(sender, "§c/mute [Name] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/localmute [Name] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Mute a user permanently");
-                            mi.sendMessage(sender, "§c/tempmute [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/localtempmute [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Mute a user temporary");
-                            mi.sendMessage(sender, "§c/warn [Name] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/localwarn [Name] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Warn a user permanently");
-                            mi.sendMessage(sender, "§c/note [Name] [Note]");
+                            mi.sendMessage(sender, "§c/localnote [Name] [Note]");
                             mi.sendMessage(sender, "§8» §7Adds a note to a user");
-                            mi.sendMessage(sender, "§c/tempwarn [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/localtempwarn [Name] [Xmo/Xd/Xh/Xm/Xs/#TimeLayout] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Warn a user temporary");
-                            mi.sendMessage(sender, "§c/kick [Name] [Reason/@Layout]");
+                            mi.sendMessage(sender, "§c/localkick [Name] [Reason/@Layout]");
                             mi.sendMessage(sender, "§8» §7Kick a user");
-                            mi.sendMessage(sender, "§c/unban [Name/IP]");
+                            mi.sendMessage(sender, "§c/localunban [Name/IP]");
                             mi.sendMessage(sender, "§8» §7Unban a user");
-                            mi.sendMessage(sender, "§c/unmute [Name]");
+                            mi.sendMessage(sender, "§c/localunmute [Name]");
                             mi.sendMessage(sender, "§8» §7Unmute a user");
-                            mi.sendMessage(sender, "§c/unwarn [ID] or /unwarn clear [Name]");
+                            mi.sendMessage(sender, "§c/localunwarn [ID] or /unwarn clear [Name]");
                             mi.sendMessage(sender, "§8» §7Deletes a warn");
-                            mi.sendMessage(sender, "§c/unnote [ID] or /unnote clear [Name]");
+                            mi.sendMessage(sender, "§c/localunnote [ID] or /unnote clear [Name]");
                             mi.sendMessage(sender, "§8» §7Deletes a note");
-                            mi.sendMessage(sender, "§c/change-reason [ID or ban/mute USER] [New reason]");
+                            mi.sendMessage(sender, "§c/localchange-reason [ID or ban/mute USER] [New reason]");
                             mi.sendMessage(sender, "§8» §7Changes the reason of a punishment");
-                            mi.sendMessage(sender, "§c/unpunish [ID]");
+                            mi.sendMessage(sender, "§c/localunpunish [ID]");
                             mi.sendMessage(sender, "§8» §7Deletes a punishment by ID");
-                            mi.sendMessage(sender, "§c/banlist <Page>");
+                            mi.sendMessage(sender, "§c/localbanlist <Page>");
                             mi.sendMessage(sender, "§8» §7See all punishments");
-                            mi.sendMessage(sender, "§c/history [Name/IP] <Page>");
+                            mi.sendMessage(sender, "§c/localhistory [Name/IP] <Page>");
                             mi.sendMessage(sender, "§8» §7See a users history");
-                            mi.sendMessage(sender, "§c/warns [Name] <Page>");
+                            mi.sendMessage(sender, "§c/localwarns [Name] <Page>");
                             mi.sendMessage(sender, "§8» §7See your or a users warnings");
-                            mi.sendMessage(sender, "§c/notes [Name] <Page>");
+                            mi.sendMessage(sender, "§c/localnotes [Name] <Page>");
                             mi.sendMessage(sender, "§8» §7See your or a users notes");
-                            mi.sendMessage(sender, "§c/check [Name]");
+                            mi.sendMessage(sender, "§c/localcheck [Name]");
                             mi.sendMessage(sender, "§8» §7Get all information about a user");
-                            mi.sendMessage(sender, "§c/AdvancedBan <reload/help>");
+                            mi.sendMessage(sender, "§c/localBan <reload/help>");
                             mi.sendMessage(sender, "§8» §7Reloads the plugin or shows help page");
                             mi.sendMessage(sender, "§8");
                         } else {
@@ -520,7 +520,7 @@ public enum Command {
                 mi.sendMessage(sender, "§8§l§m-=========================-§r ");
             },
             null,
-            "advancedban");
+            "localban");
 
     private final String permission;
     private final Predicate<String[]> syntaxValidator;
